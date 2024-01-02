@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using GlobalTicketManagement.Application.Features.Categories.Commands.CreateCateogry;
 using GlobalTicketManagement.Application.Features.Categories.Queries.GetCategoriesList;
 using GlobalTicketManagement.Application.Features.Categories.Queries.GetCategoriesListWithEvents;
 using GlobalTicketManagement.Application.Features.Events.Commands.CreateEvent;
@@ -23,12 +24,13 @@ namespace GlobalTicketManagement.Application.Profils
         {
                 CreateMap<Event,EventViewModel>().ReverseMap();
                 CreateMap<Event,EventDetailVm>().ReverseMap();
+                CreateMap<Event,CreateEventCommand>().ReverseMap(); //ToDo Test to be ok
+
                 CreateMap<Category, CategoryDto>();
                 CreateMap<Category, CategoryListVm>();
                 CreateMap<Category, CategoryEventListVm>();
-                CreateMap<Category, CategoryDto>();
+                CreateMap<Category, CreateCategoryDto>();
                 
-                CreateMap<CreateEventCommand, Event>().ReverseMap(); //ToDo Test to be ok
         }
     }
 }
