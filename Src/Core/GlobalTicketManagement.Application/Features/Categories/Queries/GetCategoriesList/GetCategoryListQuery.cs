@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace GlobalTicketManagement.Application.Features.Categories.Queries.GetCategoriesList
 {
-    public class CategoryListQuery:IRequest<List<CategoryListVm>>
+    public class GetCategoryListQuery:IRequest<List<CategoryListVm>>
     {
     }
 }
