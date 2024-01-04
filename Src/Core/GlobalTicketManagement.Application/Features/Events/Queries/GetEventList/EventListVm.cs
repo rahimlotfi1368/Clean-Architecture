@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace GlobalTicketManagement.Application.Features.Events.Queries.GetEventList
 {
-    public class EventViewModel
+    public class EventListVm
     {
         public Guid EventId { get; set; }
         public string? Name { get; set; }

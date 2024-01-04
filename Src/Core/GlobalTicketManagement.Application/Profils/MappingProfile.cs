@@ -3,8 +3,10 @@ using GlobalTicketManagement.Application.Features.Categories.Commands.CreateCate
 using GlobalTicketManagement.Application.Features.Categories.Queries.GetCategoriesList;
 using GlobalTicketManagement.Application.Features.Categories.Queries.GetCategoriesListWithEvents;
 using GlobalTicketManagement.Application.Features.Events.Commands.CreateEvent;
+using GlobalTicketManagement.Application.Features.Events.Commands.UpdateEvent;
 using GlobalTicketManagement.Application.Features.Events.Queries.GetEventDetail;
 using GlobalTicketManagement.Application.Features.Events.Queries.GetEventList;
+using GlobalTicketManagement.Application.Features.Orders.Queries;
 using GlobalTicketManagement.Domain.Entities;
 using System;
 using System.Collections.Generic;
@@ -22,15 +24,20 @@ namespace GlobalTicketManagement.Application.Profils
         /// </summary>
         public MappingProfile()
         {
-                CreateMap<Event,EventViewModel>().ReverseMap();
+                CreateMap<Event,EventListVm>().ReverseMap();
                 CreateMap<Event,EventDetailVm>().ReverseMap();
+                CreateMap<Event, CreateEventCommand>().ReverseMap();
+                CreateMap<Event, UpdateEventCommand>().ReverseMap();
                 CreateMap<Event,CreateEventCommand>().ReverseMap(); //ToDo Test to be ok
 
                 CreateMap<Category, CategoryDto>();
                 CreateMap<Category, CategoryListVm>();
                 CreateMap<Category, CategoryEventListVm>();
+                CreateMap<Category, CreateCategoryCommand>();
                 CreateMap<Category, CreateCategoryDto>();
-                
+
+                CreateMap<Order, OrdersForMonthDto>();
+
         }
     }
 }

@@ -14,7 +14,7 @@ namespace GlobalTicketManagement.Application.Features.Events.Queries.GetEventLis
     /// GetEventsListQuery is message type
     /// return a list of EventViewModel
     /// </summary>
-    public class GetEventsListQueryHandler : IRequestHandler<GetEventsListQuery, List<EventViewModel>>
+    public class GetEventsListQueryHandler : IRequestHandler<GetEventsListQuery, List<EventListVm>>
     {
         private readonly IMapper _mapper;
         private readonly IAsyncRepository<Event> _eventRepository;
@@ -24,11 +24,11 @@ namespace GlobalTicketManagement.Application.Features.Events.Queries.GetEventLis
             _mapper = mapper;
             _eventRepository = eventRepository;
         }
-        public async Task<List<EventViewModel>> Handle(GetEventsListQuery request, CancellationToken cancellationToken)
+        public async Task<List<EventListVm>> Handle(GetEventsListQuery request, CancellationToken cancellationToken)
         {
             var allEvents = (await _eventRepository.GetListAsync()).OrderBy(x => x.Date);
 
-            var eventlistVm = _mapper.Map<List<EventViewModel>>(allEvents);
+            var eventlistVm = _mapper.Map<List<EventListVm>>(allEvents);
 
             return eventlistVm;
         }
