@@ -19,7 +19,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Features\Events\Queries\NewFolder\" />
     <Folder Include="Features\Orders\Commands\" />
   </ItemGroup>
 
