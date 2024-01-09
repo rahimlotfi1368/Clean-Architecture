@@ -1,4 +1,5 @@
-﻿using GlobalTicketManagement.Application.Features.Events.Commands.DeleteEvent;
+﻿using GlobalTicketManagement.Application.Features.Events.Commands.CreateEvent;
+using GlobalTicketManagement.Application.Features.Events.Commands.DeleteEvent;
 using GlobalTicketManagement.Application.Features.Events.Commands.UpdateEvent;
 using GlobalTicketManagement.Application.Features.Events.Queries.GetEventDetail;
 using GlobalTicketManagement.Application.Features.Events.Queries.GetEventList;
@@ -34,6 +35,13 @@ namespace GlobalTicketManagement.Api.Controllers
         {
             var getEventDetailQuery = new GetEventDetailQuery() { Id = id };
             return Ok(await _mediator.Send(getEventDetailQuery));
+        }
+
+        [HttpPost(Name = "AddEvent")]
+        public async Task<ActionResult<Guid>> Create([FromBody] CreateEventCommand createEventCommand)
+        {
+            var id = await _mediator.Send(createEventCommand);
+            return Ok(id);
         }
 
         [HttpPut(Name = "UpdateEvent")]
