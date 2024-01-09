@@ -1,5 +1,6 @@
 ﻿using GlobalTicketManagement.Application.Contracts.Infrastructure;
 using GlobalTicketManagement.Application.Models.Email;
+using GlobalTicketManagement.Infrastructure.Services.FileExport;
 using GlobalTicketManagement.Infrastructure.Services.Mail;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -18,6 +19,7 @@ namespace GlobalTicketManagement.Infrastructure
             services.Configure<EmailSettings>(configuration.GetSection("EmailSettings"));
 
             services.AddTransient<IEmailService, EmailService>();
+            services.AddTransient<ICsvExporter, CsvExporter>();
 
             return services;
         }

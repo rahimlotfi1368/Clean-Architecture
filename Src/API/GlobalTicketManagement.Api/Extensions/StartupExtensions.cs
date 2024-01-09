@@ -8,6 +8,7 @@ namespace GlobalTicketManagement.Api.Extensions
     {
         public static WebApplication ConfigureServices(this WebApplicationBuilder builder) 
         {
+            builder.Services.AddSwagger();
             builder.Services.AddApplicationServices();
             builder.Services.AddInfrastructureServices(builder.Configuration);
             builder.Services.AddPersistenceServices(builder.Configuration);
@@ -21,6 +22,8 @@ namespace GlobalTicketManagement.Api.Extensions
 
         public static WebApplication ConfigurePipeLines(this WebApplication app)
         {
+            app.ConfigSwagger();
+
             app.UseHttpsRedirection();
 
             app.UseRouting();

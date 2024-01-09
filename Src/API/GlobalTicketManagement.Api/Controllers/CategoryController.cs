@@ -25,7 +25,7 @@ namespace GlobalTicketManagement.Api.Controllers
             return Ok(dtos);
         }
 
-        [HttpGet("allwithevents", Name = nameof(GetCategoriesWithEvents)]
+        [HttpGet("allwithevents", Name = nameof(GetCategoriesWithEvents))]
         [ProducesDefaultResponseType]
         [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<ActionResult<List<CategoryEventListVm>>> GetCategoriesWithEvents(bool includeHistory)

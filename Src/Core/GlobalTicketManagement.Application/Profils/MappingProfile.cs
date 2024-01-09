@@ -35,7 +35,7 @@ namespace GlobalTicketManagement.Application.Profils
                 CreateMap<Category, CategoryEventListVm>();
                 CreateMap<Category, CreateCategoryCommand>();
                 CreateMap<Category, CreateCategoryDto>();
-
+            
                 CreateMap<Order, OrdersForMonthDto>();
 
         }

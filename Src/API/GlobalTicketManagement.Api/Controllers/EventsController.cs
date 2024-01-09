@@ -2,6 +2,7 @@
 using GlobalTicketManagement.Application.Features.Events.Commands.UpdateEvent;
 using GlobalTicketManagement.Application.Features.Events.Queries.GetEventDetail;
 using GlobalTicketManagement.Application.Features.Events.Queries.GetEventList;
+using GlobalTicketManagement.Application.Features.Events.Queries.GetEventsExport;
 using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
