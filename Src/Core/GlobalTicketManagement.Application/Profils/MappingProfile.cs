@@ -29,13 +29,14 @@ namespace GlobalTicketManagement.Application.Profils
                 CreateMap<Event, CreateEventCommand>().ReverseMap();
                 CreateMap<Event, UpdateEventCommand>().ReverseMap();
                 CreateMap<Event,CreateEventCommand>().ReverseMap(); //ToDo Test to be ok
+                CreateMap<Event,CategoryEventDto>().ReverseMap(); //ToDo Test to be ok
 
                 CreateMap<Category, CategoryDto>();
                 CreateMap<Category, CategoryListVm>();
-                CreateMap<Category, CategoryEventListVm>();
+                CreateMap<Category, CategoryEventListVm>().ReverseMap();
                 CreateMap<Category, CreateCategoryCommand>();
                 CreateMap<Category, CreateCategoryDto>();
-            
+           
                 CreateMap<Order, OrdersForMonthDto>();
 
         }

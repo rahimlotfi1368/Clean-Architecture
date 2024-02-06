@@ -15,7 +15,9 @@ namespace GlobalTicketManagement.Persistence
     {
         public static IServiceCollection AddPersistenceServices(this IServiceCollection services,IConfiguration configuration)
         {
-            services.AddDbContext<DatabaseContext>(options => options.UseSqlServer(configuration.GetConnectionString("GloboTicketTicketManagementConnectionString")));
+            string? conn = configuration.GetConnectionString("GloboTicketTicketManagementConnectionString");
+
+            services.AddDbContext<DatabaseContext>(options => options.UseSqlServer(conn));
 
             services.AddScoped(typeof(IAsyncRepository<>),typeof(BaseRepository<>));
 

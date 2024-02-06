@@ -37,14 +37,14 @@ namespace GlobalTicketManagement.Api.Controllers
             return Ok(await _mediator.Send(getEventDetailQuery));
         }
 
-        [HttpPost(Name = "AddEvent")]
+        [HttpPost("CreateEvent",Name = "AddEvent")]
         public async Task<ActionResult<Guid>> Create([FromBody] CreateEventCommand createEventCommand)
         {
             var id = await _mediator.Send(createEventCommand);
             return Ok(id);
         }
 
-        [HttpPut(Name = "UpdateEvent")]
+        [HttpPut("UpdateEvent", Name = "UpdateEvent")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesDefaultResponseType]

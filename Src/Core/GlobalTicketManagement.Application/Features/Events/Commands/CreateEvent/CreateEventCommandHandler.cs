@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using GlobalTicketManagement.Application.Contracts.Infrastructure;
 using GlobalTicketManagement.Application.Contracts.Persistence;
+using GlobalTicketManagement.Application.Features.Categories.Commands.CreateCateogry;
 using GlobalTicketManagement.Application.Models.Email;
 using GlobalTicketManagement.Domain.Entities;
 using MediatR;
@@ -26,6 +27,8 @@ namespace GlobalTicketManagement.Application.Features.Events.Commands.CreateEven
         }
         public async Task<Guid> Handle(CreateEventCommand request, CancellationToken cancellationToken)
         {
+
+
             var validator = new CreateEventCommandValidator(_eventRepository);
 
             var validationResult = await validator.ValidateAsync(request);
@@ -40,9 +43,9 @@ namespace GlobalTicketManagement.Application.Features.Events.Commands.CreateEven
 
             var email = new Email
             {
-                To="sinuhe_1368@yahoo.com",
-                Body=$"A new Event Was Started {request}",
-                Subject="A new Events was Created"
+                To = "sinuhe_1368@yahoo.com",
+                Body = $"A new Event Was Started {request}",
+                Subject = "A new Events was Created"
             };
 
             try
@@ -56,5 +59,53 @@ namespace GlobalTicketManagement.Application.Features.Events.Commands.CreateEven
 
             return @event.EventId;
         }
+
+        // async Task<CreateEventCommandResponse> IRequestHandler<CreateEventCommand, CreateEventCommandResponse>.Handle(CreateEventCommand request, CancellationToken cancellationToken)
+        //{
+        //    var validator = new CreateEventCommandValidator(_eventRepository);
+
+        //    var validationResult = await validator.ValidateAsync(request);
+
+        //    if (validationResult.Errors.Count > 0)
+        //    {
+        //        var createEventCommandResponse = new CreateEventCommandResponse();
+        //        //throw new Exceptions.ValidationException(validationResult);
+        //        createEventCommandResponse.Success = false;
+        //        createEventCommandResponse.ValidationErrors = new List<string>();
+        //        foreach (var error in validationResult.Errors)
+        //        {
+        //            createEventCommandResponse.ValidationErrors.Add(error.ErrorMessage);
+        //        }
+
+        //        return createEventCommandResponse;
+        //    }
+
+
+        //    var @event = _mapper.Map<Event>(request);
+
+        //    @event = await _eventRepository.AddAsync(@event);
+
+        //    var email = new Email
+        //    {
+        //        To = "sinuhe_1368@yahoo.com",
+        //        Body = $"A new Event Was Started {request}",
+        //        Subject = "A new Events was Created"
+        //    };
+
+        //    try
+        //    {
+        //        await _emailService.SendEmailAsync(email);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        //ToDo This shouldn't stop the api from doing else this can be logged
+        //    }
+
+        //    return new CreateEventCommandResponse
+        //    {
+        //        Success = true,
+        //         EventId=@event.EventId,
+        //    };
+        //}
     }
 }

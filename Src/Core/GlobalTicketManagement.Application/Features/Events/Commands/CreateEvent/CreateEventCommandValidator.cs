@@ -25,11 +25,11 @@ namespace GlobalTicketManagement.Application.Features.Events.Commands.CreateEven
             RuleFor(p => p.Date)
                 .NotEmpty().WithMessage("{PropertyName} is required.")
                 .NotNull()
-                .GreaterThan(DateTime.Now);
+                .GreaterThan(DateTime.Now).WithMessage("The Created {PropertyName} Should be greater then now");
 
             RuleFor(p => p.Price)
                 .NotEmpty().WithMessage("{PropertyName} is required.")
-                .GreaterThan(0);
+                .GreaterThan(0).WithMessage("The {PropertyName} can not be Smaller then zero");
 
             RuleFor(e => e)
                 .MustAsync(EventNameAndDateUnique)

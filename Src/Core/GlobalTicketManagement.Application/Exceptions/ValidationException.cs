@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace GlobalTicketManagement.Application.Exceptions
 {
-    public class ValidationException:Exception
+    public class ValidationException: Exception
     {
         public List<string> ValdationErrors { get; set; }
         public ValidationException(ValidationResult validationResult)
