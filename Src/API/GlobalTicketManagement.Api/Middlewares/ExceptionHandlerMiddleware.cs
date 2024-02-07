@@ -1,16 +1,66 @@
 ﻿
+using System.Net;
+using System;
+using System.ComponentModel.DataAnnotations;
+using System.Text.Json;
+using GlobalTicketManagement.Application.Exceptions;
+
+
 namespace GlobalTicketManagement.Api.Middlewares
 {
-    public class ExceptionHandlerMiddleware : IMiddleware
+    public class ExceptionHandlerMiddleware :IMiddleware
     {
-        private readonly RequestDelegate _next;
-        public ExceptionHandlerMiddleware(RequestDelegate next)
+        //private readonly RequestDelegate _next;
+        //public ExceptionHandlerMiddleware(RequestDelegate next)
+        //{
+        //    _next = next;
+        //}
+        public async Task InvokeAsync(HttpContext context, RequestDelegate next)
         {
-            _next = next;
+            try
+            {
+                await next(context);
+            }
+            catch (Exception ex)
+            {
+                await ConvertException(context, ex);
+            }
         }
-        public Task InvokeAsync(HttpContext context, RequestDelegate next)
+
+        private Task ConvertException(HttpContext context, Exception ex)
         {
-            throw new NotImplementedException();
+            HttpStatusCode httpStatusCode = HttpStatusCode.InternalServerError;
+
+            context.Response.ContentType = "application/json";
+
+            var result = string.Empty;
+
+            switch (ex)
+            {
+                case GlobalTicketManagement.Application.Exceptions.ValidationException validationException:
+                    httpStatusCode = HttpStatusCode.BadRequest;
+                    result = JsonSerializer.Serialize(validationException.ValdationErrors);
+                    break;
+                case BadRequestException badRequestException:
+                    httpStatusCode = HttpStatusCode.BadRequest;
+                    result = badRequestException.Message;
+                    break;
+                case NotFoundException:
+                    httpStatusCode = HttpStatusCode.NotFound;
+                    break;
+                case Exception:
+                    httpStatusCode = HttpStatusCode.BadRequest;
+                    break;
+            }
+
+            context.Response.StatusCode = (int)httpStatusCode;
+
+            if (result == string.Empty)
+            {
+                result = JsonSerializer.Serialize(new { error = ex.Message });
+            }
+
+            return context.Response.WriteAsync(result);
         }
     }
 }

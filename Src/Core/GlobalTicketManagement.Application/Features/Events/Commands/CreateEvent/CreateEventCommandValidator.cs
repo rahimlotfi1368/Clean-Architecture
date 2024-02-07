@@ -14,16 +14,16 @@ namespace GlobalTicketManagement.Application.Features.Events.Commands.CreateEven
         private readonly IEventRepository _eventRepository;
 
         public CreateEventCommandValidator(IEventRepository eventRepository)
-        {
+         {
               _eventRepository = eventRepository;
 
               RuleFor(p=>p.Name)
-                .NotEmpty().WithMessage("{PropertyName} is required.")
+                .NotEmpty().WithMessage("{PropertyName}  is required.")
                 .NotNull()
-                .MaximumLength(50).WithMessage("{PropertyName} must not exceed 50 characters.");
+                .MaximumLength(50).WithMessage("{PropertyName}  must not exceed 50 characters.");
 
             RuleFor(p => p.Date)
-                .NotEmpty().WithMessage("{PropertyName} is required.")
+                .NotEmpty().WithMessage("{PropertyName}  is required.")
                 .NotNull()
                 .GreaterThan(DateTime.Now).WithMessage("The Created {PropertyName} Should be greater then now");
 

@@ -1,6 +1,8 @@
-﻿using GlobalTicketManagement.Application;
+﻿using GlobalTicketManagement.Api.Middlewares;
+using GlobalTicketManagement.Application;
 using GlobalTicketManagement.Infrastructure;
 using GlobalTicketManagement.Persistence;
+using Microsoft.AspNetCore.HttpsPolicy;
 
 namespace GlobalTicketManagement.Api.Extensions
 {
@@ -16,6 +18,8 @@ namespace GlobalTicketManagement.Api.Extensions
             builder.Services.AddControllers();
 
             builder.Services.AddMyCorsPolicy();
+            builder.Services.AddTransient<ExceptionHandlerMiddleware>();
+
 
             return builder.Build();
         }
@@ -26,7 +30,9 @@ namespace GlobalTicketManagement.Api.Extensions
 
             app.UseHttpsRedirection();
 
-            app.UseRouting();
+            //app.UseRouting();
+
+            app.UseCustomExceptionHandler();
 
             app.UseCors("Open");
 
