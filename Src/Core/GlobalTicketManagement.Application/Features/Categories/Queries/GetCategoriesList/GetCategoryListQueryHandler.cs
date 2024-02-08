@@ -2,6 +2,7 @@
 using GlobalTicketManagement.Application.Contracts.Persistence;
 using GlobalTicketManagement.Domain.Entities;
 using MediatR;
+using SharedUtilities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,7 +22,7 @@ namespace GlobalTicketManagement.Application.Features.Categories.Queries.GetCate
             _categoryRepository = categoryRepository;
         }
         public async Task<List<CategoryListVm>> Handle(GetCategoryListQuery request, CancellationToken cancellationToken)
-        {
+        {            
             var allCategories = (await _categoryRepository.GetListAsync()).OrderBy(x => x.Name);
             return _mapper.Map<List<CategoryListVm>>(allCategories);
         }

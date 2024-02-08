@@ -15,6 +15,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\..\Shared\SharedUtilities\SharedUtilities.csproj" />
     <ProjectReference Include="..\GlobalTicketManagement.Domain\GlobalTicketManagement.Domain.csproj" />
   </ItemGroup>
 
