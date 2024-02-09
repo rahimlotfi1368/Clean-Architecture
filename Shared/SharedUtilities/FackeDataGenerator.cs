@@ -26,8 +26,8 @@ namespace SharedUtilities
         {
             var categories = GetCategorys();
             var iniCategory = categories[random.Next(0, categories.Count)];
-            Events = GetEvents(iniCategory.CategoryId).OrderBy(i=>random.Next()).ToList();
-            Categories = GetCategorys(Events.Take(random.Next(1, Events.Count()-1)).ToList());
+            Events = GetEvents(iniCategory.CategoryId).ToList();
+            Categories = GetCategorys(Events).ToList();
             Orders = GetOrders();
         }
        

@@ -38,8 +38,8 @@ namespace GlobalTicketManagement.Application.UnitTest.Mocks
             var categories = FackeDataGenerator.Categories;
 
             var mockCategoryRepository = new Mock<ICategoryRepository>();
-            mockCategoryRepository.Setup(repo => repo.GetCategoriesWithEvents(true)).ReturnsAsync(categories);
-            //mockCategoryRepository.Setup(repo => repo.GetCategoriesWithEvents(false)).ReturnsAsync(categories);
+            //mockCategoryRepository.Setup(repo => repo.GetCategoriesWithEvents(true)).ReturnsAsync(categories);
+            mockCategoryRepository.Setup(repo => repo.GetCategoriesWithEvents(false)).ReturnsAsync(categories);
             return mockCategoryRepository;
         }
     }

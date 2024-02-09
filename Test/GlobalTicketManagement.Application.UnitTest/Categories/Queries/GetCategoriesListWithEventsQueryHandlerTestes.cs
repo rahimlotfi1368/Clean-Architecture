@@ -38,7 +38,7 @@ namespace GlobalTicketManagement.Application.UnitTest.Categories.Queries
 
             var result = await handler.Handle(new GetCategoriesListWithEventsQuery(), CancellationToken.None);
 
-            result.ShouldBeOfType<List<CategoryListVm>>();
+            result.ShouldBeOfType<List<CategoryEventListVm>>();
 
             result.Count.ShouldBe(FackeDataGenerator.Categories.Count());
         }
