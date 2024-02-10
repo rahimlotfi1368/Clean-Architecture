@@ -1,5 +1,7 @@
 ﻿using GlobalTicketManagement.Api.Middlewares;
+using GlobalTicketManagement.Api.Services;
 using GlobalTicketManagement.Application;
+using GlobalTicketManagement.Application.Contracts;
 using GlobalTicketManagement.Infrastructure;
 using GlobalTicketManagement.Persistence;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -14,6 +16,9 @@ namespace GlobalTicketManagement.Api.Extensions
             builder.Services.AddApplicationServices();
             builder.Services.AddInfrastructureServices(builder.Configuration);
             builder.Services.AddPersistenceServices(builder.Configuration);
+
+            builder.Services.AddScoped<ILoggedInUserService, LoggedInUserService>();
+            builder.Services.AddHttpContextAccessor();
 
             builder.Services.AddControllers();
 

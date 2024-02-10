@@ -1,4 +1,5 @@
-﻿using GlobalTicketManagement.Domain.Common;
+﻿using GlobalTicketManagement.Application.Contracts;
+using GlobalTicketManagement.Domain.Common;
 using GlobalTicketManagement.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -11,9 +12,10 @@ namespace GlobalTicketManagement.Persistence
 {
     public class DatabaseContext:DbContext
     {
-        public DatabaseContext(DbContextOptions<DatabaseContext> options):base(options)
+        private readonly ILoggedInUserService? _loggedInUserService;
+        public DatabaseContext(DbContextOptions<DatabaseContext> options, ILoggedInUserService? loggedInUserService) : base(options)
         {
-            
+            _loggedInUserService = loggedInUserService;
         }
 
         public DbSet<Event> Events { get; set; }
@@ -195,9 +197,11 @@ namespace GlobalTicketManagement.Persistence
                 {
                     case EntityState.Added:
                         entry.Entity.CreatedDate = DateTime.Now;
+                        entry.Entity.CreatedBy = _loggedInUserService.UserId;
                         break;
                     case EntityState.Modified:
                         entry.Entity.LastModifiedDate = DateTime.Now;
+                        entry.Entity.LastModifiedBy = _loggedInUserService.UserId;
                         break;
                 }
             }
