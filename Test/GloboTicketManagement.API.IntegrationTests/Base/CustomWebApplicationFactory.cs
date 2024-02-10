@@ -47,8 +47,17 @@ namespace GloboTicketManagement.API.IntegrationTests.Base
 
         public HttpClient GetAnonymousClient()
         {
-            var client = new HttpClient();
-            return client;
+            try
+            {
+                var client = CreateClient();
+                return client;
+
+            }
+            catch (Exception ex )
+            {
+
+                throw;
+            }
         }
     }
 }

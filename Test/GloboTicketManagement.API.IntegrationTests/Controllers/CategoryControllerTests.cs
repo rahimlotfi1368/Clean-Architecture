@@ -1,6 +1,6 @@
+using GlobalTicketManagement.Api;
 using GlobalTicketManagement.Application.Features.Categories.Queries.GetCategoriesList;
 using GloboTicketManagement.API.IntegrationTests.Base;
-using Microsoft.VisualStudio.TestPlatform.TestHost;
 using System.Text.Json;
 
 namespace GloboTicketManagement.API.IntegrationTests.Controllers
