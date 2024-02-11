@@ -1,15 +1,10 @@
 ﻿using AutoMapper;
 using GlobalTicketManagement.Application.Contracts.Infrastructure;
 using GlobalTicketManagement.Application.Contracts.Persistence;
-using GlobalTicketManagement.Application.Features.Categories.Commands.CreateCateogry;
 using GlobalTicketManagement.Application.Models.Email;
 using GlobalTicketManagement.Domain.Entities;
 using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Microsoft.Extensions.Logging;
 
 namespace GlobalTicketManagement.Application.Features.Events.Commands.CreateEvent
 {
@@ -17,7 +12,8 @@ namespace GlobalTicketManagement.Application.Features.Events.Commands.CreateEven
     {
         private readonly IMapper _mapper;
         private readonly IEventRepository _eventRepository;
-        private readonly IEmailService  _emailService;
+        private readonly IEmailService _emailService;
+        private readonly ILogger<CreateEventCommandHandler> _logger;
 
         public CreateEventCommandHandler(IMapper mapper, IEventRepository eventRepository, IEmailService emailService)
         {
@@ -55,6 +51,7 @@ namespace GlobalTicketManagement.Application.Features.Events.Commands.CreateEven
             catch (Exception ex)
             {
                 //ToDo This shouldn't stop the api from doing else this can be logged
+                _logger.LogError($"Mailing about event {@event.EventId} failed due to an error with the mail service: {ex.Message}");
             }
 
             return @event.EventId;

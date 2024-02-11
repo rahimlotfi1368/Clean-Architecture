@@ -5,18 +5,24 @@ using GlobalTicketManagement.Application.Contracts;
 using GlobalTicketManagement.Infrastructure;
 using GlobalTicketManagement.Persistence;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Serilog;
 
 namespace GlobalTicketManagement.Api.Extensions
 {
     public static class StartupExtensions
     {
+        public static void ConfigureSerilog(this WebApplicationBuilder builder)
+        {
+            builder.Host.UseSerilog((context, loggerConfiguration) => loggerConfiguration.WriteTo.Console().ReadFrom.Configuration(context.Configuration));
+        }
         public static WebApplication ConfigureServices(this WebApplicationBuilder builder) 
         {
+            builder.ConfigureSerilog();
             builder.Services.AddSwagger();
             builder.Services.AddApplicationServices();
             builder.Services.AddInfrastructureServices(builder.Configuration);
             builder.Services.AddPersistenceServices(builder.Configuration);
-
+            
             builder.Services.AddScoped<ILoggedInUserService, LoggedInUserService>();
             builder.Services.AddHttpContextAccessor();
 
@@ -42,6 +48,8 @@ namespace GlobalTicketManagement.Api.Extensions
             app.UseCors("Open");
 
             app.MapControllers();
+
+            app.UseSerilogRequestLogging();
 
             return app;
         }

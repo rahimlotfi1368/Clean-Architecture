@@ -12,6 +12,11 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="Serilog" Version="3.1.1" />
+    <PackageReference Include="Serilog.AspNetCore" Version="8.0.1" />
+    <PackageReference Include="Serilog.Extensions.Logging" Version="8.0.0" />
+    <PackageReference Include="Serilog.Settings.Configuration" Version="8.0.0" />
+    <PackageReference Include="Serilog.Sinks.File" Version="5.0.0" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
     <PackageReference Include="Swashbuckle.AspNetCore.Swagger" Version="6.5.0" />
   </ItemGroup>
@@ -20,6 +25,10 @@
     <ProjectReference Include="..\..\Core\GlobalTicketManagement.Application\GlobalTicketManagement.Application.csproj" />
     <ProjectReference Include="..\..\Infrastructure\GlobalTicketManagement.Infrastructure\GlobalTicketManagement.Infrastructure.csproj" />
     <ProjectReference Include="..\..\Infrastructure\GlobalTicketManagement.Persistence\GlobalTicketManagement.Persistence.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="logs\" />
   </ItemGroup>
 
 </Project>

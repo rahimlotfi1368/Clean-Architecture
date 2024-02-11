@@ -1,4 +1,5 @@
 using GlobalTicketManagement.Api.Extensions;
+using Serilog;
 
 namespace GlobalTicketManagement.Api
 {
@@ -6,6 +7,12 @@ namespace GlobalTicketManagement.Api
     {
         public static async  Task Main(string[] args)
         {
+            Log.Logger=new LoggerConfiguration()
+                .WriteTo.Console()
+                .CreateBootstrapLogger();
+
+            Log.Information("GloboTicket API starting");
+
             var builder = WebApplication.CreateBuilder(args);
 
             var app = builder
