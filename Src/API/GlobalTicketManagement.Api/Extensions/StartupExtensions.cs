@@ -4,6 +4,7 @@ using GlobalTicketManagement.Application;
 using GlobalTicketManagement.Application.Contracts;
 using GlobalTicketManagement.Infrastructure;
 using GlobalTicketManagement.Persistence;
+using GlobalTicketManagement.Identity;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Serilog;
 
@@ -22,7 +23,8 @@ namespace GlobalTicketManagement.Api.Extensions
             builder.Services.AddApplicationServices();
             builder.Services.AddInfrastructureServices(builder.Configuration);
             builder.Services.AddPersistenceServices(builder.Configuration);
-            
+            builder.Services.AddIdentityServices(builder.Configuration);
+
             builder.Services.AddScoped<ILoggedInUserService, LoggedInUserService>();
             builder.Services.AddHttpContextAccessor();
 
@@ -43,9 +45,13 @@ namespace GlobalTicketManagement.Api.Extensions
 
             //app.UseRouting();
 
+            app.UseAuthentication();
+
             app.UseCustomExceptionHandler();
 
             app.UseCors("Open");
+
+            app.UseAuthorization();
 
             app.MapControllers();
 

@@ -23,6 +23,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\Core\GlobalTicketManagement.Application\GlobalTicketManagement.Application.csproj" />
+    <ProjectReference Include="..\..\Infrastructure\GlobalTicketManagement.Identity\GlobalTicketManagement.Identity.csproj" />
     <ProjectReference Include="..\..\Infrastructure\GlobalTicketManagement.Infrastructure\GlobalTicketManagement.Infrastructure.csproj" />
     <ProjectReference Include="..\..\Infrastructure\GlobalTicketManagement.Persistence\GlobalTicketManagement.Persistence.csproj" />
   </ItemGroup>
