@@ -1,4 +1,5 @@
 using GlobalTicketManagement.Api.Extensions;
+using GlobalTicketManagement.Identity.SeedData;
 using Serilog;
 
 namespace GlobalTicketManagement.Api

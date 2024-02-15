@@ -1,6 +1,7 @@
 ﻿using GlobalTicketManagement.Application.Contracts.Identity;
 using GlobalTicketManagement.Application.Models.Authentication;
 using GlobalTicketManagement.Identity.Models;
+using GlobalTicketManagement.Identity.SeedData;
 using GlobalTicketManagement.Identity.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Http;
