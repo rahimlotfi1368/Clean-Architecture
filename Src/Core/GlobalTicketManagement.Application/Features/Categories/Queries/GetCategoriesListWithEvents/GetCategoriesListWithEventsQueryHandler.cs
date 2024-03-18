@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using GlobalTicketManagement.Application.Contracts.Persistence;
 using MediatR;
+using SharedUtilities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,9 +22,12 @@ namespace GlobalTicketManagement.Application.Features.Categories.Queries.GetCate
         }
         public async Task<List<CategoryEventListVm>> Handle(GetCategoriesListWithEventsQuery request, CancellationToken cancellationToken)
         {
+           
             var list = await _categoryRepository.GetCategoriesWithEvents(request.IncludeHistory);
 
-            return _mapper.Map<List<CategoryEventListVm>>(list);
+            var result= _mapper.Map<List<CategoryEventListVm>>(list);
+
+            return result;
         }
     }
 }

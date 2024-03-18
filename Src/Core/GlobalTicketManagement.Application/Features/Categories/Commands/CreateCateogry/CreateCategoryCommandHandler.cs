@@ -36,7 +36,7 @@ namespace GlobalTicketManagement.Application.Features.Categories.Commands.Create
                     createCategoryCommandResponse.ValidationErrors.Add(error.ErrorMessage);
                 }
             }
-
+           
             if (createCategoryCommandResponse.Success)
             {
                 var category = new Category() { Name = request.Name };

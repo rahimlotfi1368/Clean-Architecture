@@ -1,4 +1,4 @@
-﻿using AutoMapper;
+﻿ using AutoMapper;
 using GlobalTicketManagement.Application.Contracts.Persistence;
 using GlobalTicketManagement.Domain.Entities;
 using MediatR;
